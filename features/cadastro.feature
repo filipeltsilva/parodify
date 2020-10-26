@@ -4,31 +4,26 @@ Funcionalidade: Cadastro de usuários
   Sendo um visitante do site Parodify
   Quero fazer o meu cadastro
   Para que eu possa ouvir minhas músicas favoritas
-@mk
+
 Cenário: Efetuar cadastro com sucesso
   Dado que eu acesso a página de cadastro
   Quando eu submeter o meu cadastro com:
-    | email | filipe@lemos.com |
-    | senha | filipe123 |
-    | confirmacao_senha | filipe123 |
+    | email             | filipe@lemos.com |
+    | senha             | filipe123        |
+    | confirmacao_senha | filipe123        |
   Então eu devo ser redirecionado para a área logada
 
-Cenário: Efetuar cadastro com e-mail não informado
+Esquema do Cenário: Tentar efetuar cadastro com dados inválidos
   Dado que eu acesso a página de cadastro
-  Quando eu submeter o meu cadastro sem o e-mail
-  Então eu devo ver a mensagem Oops! Informe seu e-mail
+  Quando eu submeter o meu cadastro com:
+    | email             | <email>             |
+    | senha             | <senha>             |
+    | confirmacao_senha | <confirmacao_senha> |
+  Então eu devo ver a mensagem "<mensagem_saida>"
 
-Cenário: Efetuar cadastro com senha não informada
-  Dado que eu acesso a página de cadastro
-  Quando eu submeter o meu cadastro sem a senha
-  Então eu devo ver a mensagem Oops! Informe sua senha
-
-Cenário: Efetuar cadastro com senha divergente
-  Dado que eu acesso a página de cadastro
-  Quando eu submeter o meu cadastro com as senhas divergentes
-  Então eu devo ver a mensagem Oops! Senhas não são iguais
-
-Cenário: Efetuar cadastro com nenhum campo preenchido
-  Dado que eu acesso a página de cadastro
-  Quando eu submeter o meu cadastro sem preencher os campos
-  Então eu devo ver a mensagem Oops! Informe seu e-mail e sua senha
+  Exemplos:
+    | email            | senha     | confirmacao_senha | mensagem_saida                       |
+    |                  | filipe123 | filipe123         | Oops! Informe seu email.             |
+    | filipe@lemos.com |           |                   | Oops! Informe sua senha.             |
+    | filipe@lemos.com | filipe123 | 123filipe         | Oops! Senhas não são iguais.         |
+    |                  |           |                   | Oops! Informe seu email e sua senha. |

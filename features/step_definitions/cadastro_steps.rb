@@ -6,12 +6,22 @@ end
 Quando('eu submeter o meu cadastro com:') do |table|
   # O método rows_hash converte a Data Table do Cucumber para um objeto nativo do Ruby
   user = table.rows_hash
+
+  remove_user(user[:email])
+
   find("input[name*=email]").set(user[:email])
   find("input[placeholder='Sua senha secreta']").set(user[:senha])
   find("input[placeholder='Confirme a senha']").set(user[:confirmacao_senha])
-  sleep(5)
+
+  click_on("Cadastrar")
 end
 
 Entao('eu devo ser redirecionado para a área logada') do
+  # Page, da forma que está, é um objeto do Capybara
+  expect(page).to have_css('.dashboard')
+end
 
+Entao('eu devo ver a mensagem {string}') do |expect_message|
+alert = find(".message p")
+  expect(alert.text).to eql(expect_message)
 end
