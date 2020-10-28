@@ -27,3 +27,7 @@ Esquema do Cenário: Tentar efetuar cadastro com dados inválidos
     | filipe@lemos.com |           |                   | Oops! Informe sua senha.             |
     | filipe@lemos.com | filipe123 | 123filipe         | Oops! Senhas não são iguais.         |
     |                  |           |                   | Oops! Informe seu email e sua senha. |
+@temp
+Cenário: Validar campo de email na tela de cadastro
+  Quando eu acesso a página de cadastro
+  Então ela deve conter o seguinte CSS: "input[type=email]"
