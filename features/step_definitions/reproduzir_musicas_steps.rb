@@ -1,5 +1,5 @@
 Dado("Login com {string} e senha {string}") do |email, password|
-  visit("http://parodify.qaninja.com.br")
+  visit("/")
   click_on("Login")
   find("#user_email").set(email)
   find("#user_password").set(password)
